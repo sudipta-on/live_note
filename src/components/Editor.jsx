@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import MDEditor from "@uiw/react-md-editor"
 import Toolbar from "./Toolbar"
+
 import * as Y from "yjs"
 import { WebsocketProvider } from "y-websocket"
 import { IndexeddbPersistence } from "y-indexeddb"
@@ -9,6 +10,8 @@ export default function Editor({ room }) {
 
   const [value, setValue] = useState("")
   const [users, setUsers] = useState(1)
+
+  const yTextRef = useRef(null)
 
   useEffect(() => {
 
@@ -24,6 +27,8 @@ export default function Editor({ room }) {
 
     const yText = ydoc.getText("markdown")
 
+    yTextRef.current = yText
+
     setValue(yText.toString())
 
     yText.observe(() => {
@@ -36,19 +41,19 @@ export default function Editor({ room }) {
 
     return () => {
       provider.destroy()
+      ydoc.destroy()
     }
 
   }, [room])
 
   const updateText = (val) => {
 
-    setValue(val)
+    if (!yTextRef.current) return
 
-    const ydoc = new Y.Doc()
-    const yText = ydoc.getText("markdown")
+    const yText = yTextRef.current
 
     yText.delete(0, yText.length)
-    yText.insert(0, val)
+    yText.insert(0, val || "")
 
   }
 
@@ -75,5 +80,7 @@ export default function Editor({ room }) {
       </div>
 
     </div>
+
   )
+
 }
