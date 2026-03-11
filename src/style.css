@@ -455,3 +455,10 @@ background:#6366f1;
 .join-btn:hover{
 background:#4f46e5;
 }
+
+.room{
+background:#1e293b;
+padding:4px 8px;
+border-radius:6px;
+font-weight:500;
+}
