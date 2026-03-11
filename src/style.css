@@ -1,0 +1,416 @@
+/* ================= GLOBAL ================= */
+
+body{
+margin:0;
+font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+background:#0f172a;
+color:white;
+transition:background 0.3s ease,color 0.3s ease;
+}
+
+/* LIGHT MODE */
+
+body.light{
+background:#f8fafc;
+color:#020617;
+}
+
+
+/* ================= HOME PAGE ================= */
+
+.home{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.home h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.panel{
+margin-top:30px;
+display:flex;
+gap:12px;
+}
+
+.panel input{
+padding:12px;
+border-radius:8px;
+border:none;
+width:200px;
+outline:none;
+}
+
+.panel button{
+padding:12px 20px;
+border:none;
+border-radius:8px;
+background:#6366f1;
+color:white;
+cursor:pointer;
+font-weight:500;
+transition:0.2s;
+}
+
+.panel button:hover{
+background:#4f46e5;
+}
+
+
+/* ================= EDITOR LAYOUT ================= */
+
+.editor-container{
+height:100vh;
+width:100vw;
+display:flex;
+flex-direction:column;
+}
+
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:12px 20px;
+
+background:#020617;
+border-bottom:1px solid #1e293b;
+}
+
+body.light .toolbar{
+background:white;
+border-bottom:1px solid #e2e8f0;
+}
+
+.toolbar .left{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.toolbar .right{
+display:flex;
+gap:10px;
+}
+
+.toolbar button{
+padding:8px 14px;
+border:none;
+border-radius:6px;
+
+background:#6366f1;
+color:white;
+
+cursor:pointer;
+transition:0.2s;
+}
+
+.toolbar button:hover{
+background:#4f46e5;
+}
+
+
+/* ================= MARKDOWN EDITOR ================= */
+
+.w-md-editor{
+flex:1;
+}
+
+/* DARK EDITOR */
+
+.w-md-editor{
+background:#0f172a;
+color:white;
+}
+
+/* LIGHT EDITOR */
+
+body.light .w-md-editor{
+background:white;
+color:black;
+}
+
+
+/* ================= MARKDOWN INPUT ================= */
+
+
+
+
+/* ================= MARKDOWN PREVIEW ================= */
+
+body.light .w-md-editor-preview{
+background:white;
+color:black;
+}
+
+body.light .w-md-editor-preview h1,
+body.light .w-md-editor-preview h2,
+body.light .w-md-editor-preview h3{
+color:#000000;
+}
+
+body.light .w-md-editor-preview a{
+color:#2563eb;
+}
+
+
+/* CODE BLOCKS */
+
+body.light .w-md-editor-preview pre{
+background:#f3f4f6;
+color:#111827;
+}
+
+body.light .w-md-editor-preview code{
+background:#f3f4f6;
+color:#111827;
+padding:2px 4px;
+border-radius:4px;
+}
+
+
+/* ================= MARKDOWN TOOLBAR ================= */
+
+.w-md-editor-toolbar{
+background:#020617;
+border-bottom:1px solid #1e293b;
+height:52px;
+}
+
+body.light .w-md-editor-toolbar{
+background:white;
+border-bottom:1px solid #e2e8f0;
+}
+
+/* BIGGER ICONS */
+
+.w-md-editor-toolbar button{
+font-size:18px;
+padding:8px 12px;
+color:white;
+}
+
+body.light .w-md-editor-toolbar button{
+color:black;
+}
+
+
+/* ================= STATUS BAR ================= */
+
+.statusbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:10px 20px;
+
+background:#020617;
+
+border-top:1px solid #1e293b;
+
+font-size:14px;
+opacity:0.9;
+
+}
+
+body.light .statusbar{
+background:white;
+border-top:1px solid #e2e8f0;
+}
+
+
+/* ================= TEXT HIGHLIGHT ================= */
+
+mark{
+background:#facc15;
+padding:2px 4px;
+border-radius:4px;
+}
+
+
+/* ================= TEXT COLOR SUPPORT ================= */
+
+.w-md-editor-preview span{
+font-weight:500;
+}
+
+
+/* ================= SELECTION STYLE ================= */
+
+::selection{
+background:#6366f1;
+color:white;
+}
+/* Fix unwanted black highlight in preview */
+
+body.light .wmde-markdown{
+background:#ffffff;
+color:#000000;
+}
+
+body.light .wmde-markdown p,
+body.light .wmde-markdown strong,
+body.light .wmde-markdown em,
+body.light .wmde-markdown li{
+background:transparent;
+color:#000000;
+}
+
+/* Headings */
+
+body.light .wmde-markdown h1,
+body.light .wmde-markdown h2,
+body.light .wmde-markdown h3,
+body.light .wmde-markdown h4{
+color:#111827;
+background:transparent;
+}
+
+/* Links */
+
+body.light .wmde-markdown a{
+color:#2563eb;
+}
+
+body.light .w-md-editor-text-input{
+color:black !important;
+}
+
+body.light textarea{
+color:black;
+caret-color:black;
+}
+
+/* Toolbar Logo */
+
+.logo{
+font-size:22px;
+font-weight:600;
+letter-spacing:0.5px;
+}
+
+/* User counter */
+
+.users{
+display:flex;
+align-items:center;
+gap:6px;
+font-weight:500;
+opacity:0.9;
+}
+
+/* Buttons */
+
+.copy-btn{
+display:flex;
+align-items:center;
+gap:6px;
+
+background:#6366f1;
+padding:8px 14px;
+
+border-radius:6px;
+border:none;
+
+color:white;
+cursor:pointer;
+}
+
+.copy-btn:hover{
+background:#4f46e5;
+}
+
+/* Theme button */
+
+.theme-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:36px;
+height:36px;
+
+border-radius:50%;
+
+background:#1e293b;
+border:none;
+
+color:white;
+cursor:pointer;
+}
+
+.theme-btn:hover{
+background:#334155;
+}
+
+/* Light theme button */
+
+body.light .theme-btn{
+background:#e2e8f0;
+color:black;
+}
+
+/* Toast notification */
+
+.toast{
+
+position:fixed;
+
+bottom:25px;
+right:25px;
+
+background:#26df45;
+color:white;
+
+padding:10px 16px;
+
+border-radius:8px;
+
+font-size:14px;
+
+box-shadow:0 6px 20px rgba(0,0,0,0.25);
+
+animation:toastFade 2.5s ease;
+
+z-index:1000;
+
+}
+
+/* Light theme */
+
+body.light .toast{
+background:#26df45;
+}
+
+/* Animation */
+
+@keyframes toastFade{
+
+0%{
+opacity:0;
+transform:translateY(15px);
+}
+
+10%{
+opacity:1;
+transform:translateY(0);
+}
+
+90%{
+opacity:1;
+}
+
+100%{
+opacity:0;
+}
+
+}
