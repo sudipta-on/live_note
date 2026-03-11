@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
-import { FaMoon, FaSun, FaUsers, FaCopy } from "react-icons/fa"
+import { FaMoon, FaSun, FaUsers, FaCopy, FaSync, FaCheck } from "react-icons/fa"
 
-export default function Toolbar({ room, users }) {
+export default function Toolbar({ room, users, syncContent }) {
 
+  const [toast, setToast] = useState(null)
   const [isLight, setIsLight] = useState(false)
-  const [showToast, setShowToast] = useState(false)
 
   useEffect(() => {
 
@@ -17,19 +17,36 @@ export default function Toolbar({ room, users }) {
 
   }, [])
 
+  const showToast = (message) => {
+
+    setToast(message)
+
+    setTimeout(() => {
+      setToast(null)
+    }, 2200)
+
+  }
+
+
   const copyLink = () => {
 
     const url = window.location.origin + "/room/" + room
 
     navigator.clipboard.writeText(url)
 
-    setShowToast(true)
-
-    setTimeout(() => {
-      setShowToast(false)
-    }, 2500)
+    showToast("Link copied to clipboard")
 
   }
+
+
+  const handleSync = () => {
+
+    syncContent()
+
+    showToast("Content synced successfully")
+
+  }
+
 
   const toggleTheme = () => {
 
@@ -42,6 +59,7 @@ export default function Toolbar({ room, users }) {
     localStorage.setItem("theme", newTheme ? "light" : "dark")
 
   }
+
 
   return (
 
@@ -61,9 +79,12 @@ export default function Toolbar({ room, users }) {
         <div className="right">
 
           <div className="users">
-            <FaUsers />
-            <span>{users}</span>
+            <FaUsers /> {users}
           </div>
+
+          <button className="sync-btn" onClick={handleSync}>
+            <FaSync /> Sync
+          </button>
 
           <button className="copy-btn" onClick={copyLink}>
             <FaCopy /> Copy Link
@@ -77,9 +98,10 @@ export default function Toolbar({ room, users }) {
 
       </div>
 
-      {showToast && (
+
+      {toast && (
         <div className="toast">
-          Link copied to clipboard
+          <FaCheck /> {toast}
         </div>
       )}
 

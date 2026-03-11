@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react"
+import { useParams } from "react-router-dom"
 import MDEditor from "@uiw/react-md-editor"
 import Toolbar from "./Toolbar"
 
@@ -6,7 +7,9 @@ import * as Y from "yjs"
 import { WebsocketProvider } from "y-websocket"
 import { IndexeddbPersistence } from "y-indexeddb"
 
-export default function Editor({ room }) {
+export default function Editor() {
+
+  const { roomId } = useParams()
 
   const [value, setValue] = useState("")
   const [users, setUsers] = useState(1)
@@ -19,11 +22,11 @@ export default function Editor({ room }) {
 
     const provider = new WebsocketProvider(
       "wss://demos.yjs.dev",
-      room,
+      roomId,
       ydoc
     )
 
-    new IndexeddbPersistence(room, ydoc)
+    new IndexeddbPersistence(roomId, ydoc)
 
     const yText = ydoc.getText("markdown")
 
@@ -44,30 +47,33 @@ export default function Editor({ room }) {
       ydoc.destroy()
     }
 
-  }, [room])
+  }, [roomId])
 
-  const updateText = (val) => {
+
+  const syncContent = () => {
 
     if (!yTextRef.current) return
 
     const yText = yTextRef.current
 
     yText.delete(0, yText.length)
-    yText.insert(0, val || "")
+    yText.insert(0, value || "")
 
   }
 
+
   const wordCount = value ? value.split(/\s+/).length : 0
+
 
   return (
 
     <div className="editor-container">
 
-      <Toolbar room={room} users={users} />
+      <Toolbar room={roomId} users={users} syncContent={syncContent} />
 
       <MDEditor
         value={value}
-        onChange={updateText}
+        onChange={(val)=>setValue(val || "")}
         height={650}
       />
 
@@ -75,7 +81,7 @@ export default function Editor({ room }) {
 
         <span>Word Count: {wordCount}</span>
 
-        <span>Autosave Enabled</span>
+        <span>SM Creation</span>
 
       </div>
 

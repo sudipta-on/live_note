@@ -368,7 +368,11 @@ position:fixed;
 bottom:25px;
 right:25px;
 
-background:#26df45;
+display:flex;
+align-items:center;
+gap:8px;
+
+background:#22c55e;
 color:white;
 
 padding:10px 16px;
@@ -376,22 +380,19 @@ padding:10px 16px;
 border-radius:8px;
 
 font-size:14px;
+font-weight:500;
 
 box-shadow:0 6px 20px rgba(0,0,0,0.25);
 
-animation:toastFade 2.5s ease;
+animation:toastFade 2.2s ease;
 
 z-index:1000;
 
 }
 
-/* Light theme */
-
 body.light .toast{
-background:#26df45;
+background:#16a34a;
 }
-
-/* Animation */
 
 @keyframes toastFade{
 
@@ -413,4 +414,44 @@ opacity:1;
 opacity:0;
 }
 
+}
+
+.sync-btn{
+
+display:flex;
+align-items:center;
+gap:6px;
+
+background:#22c55e;
+
+padding:8px 14px;
+
+border-radius:6px;
+border:none;
+
+color:white;
+cursor:pointer;
+
+}
+
+.sync-btn:hover{
+
+background:#16a34a;
+
+}
+
+.create-btn{
+background:#22c55e;
+}
+
+.create-btn:hover{
+background:#16a34a;
+}
+
+.join-btn{
+background:#6366f1;
+}
+
+.join-btn:hover{
+background:#4f46e5;
 }

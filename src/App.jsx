@@ -1,20 +1,25 @@
-import { useState } from "react";
-import Home from "./pages/Home";
-import Editor from "./components/Editor";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home"
+import Editor from "./components/Editor"
 
-function App() {
+function App(){
 
-  const [room, setRoom] = useState(null);
-  const toggleTheme = () => {
+return(
 
-  document.body.classList.toggle("light")
+<BrowserRouter>
+
+<Routes>
+
+<Route path="/" element={<Home />} />
+
+<Route path="/room/:roomId" element={<Editor />} />
+
+</Routes>
+
+</BrowserRouter>
+
+)
 
 }
-  if (!room) {
-    return <Home setRoom={setRoom} />;
-  }
 
-  return <Editor room={room} />;
-}
-
-export default App;
+export default App
